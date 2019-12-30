@@ -32,5 +32,39 @@
         </span>
     </div>
 </div>
+<!--content盒子-->
+<div class="contentBox">
+    <!-- 数据包盒子 -->
+    <div class="dataBox">
+        <div class="navBox">
+            <span>全部</span>
+            <span>智慧中心</span>
+            <span>智慧照明</span>
+            <span>设备控制</span>
+            <span>智慧安防</span>
+            <select name="" id="">
+                <option value="">更多</option>
+                <option value="">智慧校园</option>
+                <option value="">智慧楼宇</option>
+            </select>
+        </div>
+        <div class="minBox"></div>
+    </div>
+    <!-- 详情盒子 -->
+    <div class="detailBox"></div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script>
+    $(function () {
+        //切换样式
+        $(".navBox span").each(function () {
+            //初始化
+            $(".navBox span").eq(0).addClass("active");
+            $(this).click(function () {
+                $(this).addClass("active").siblings().removeClass("active");
+            });
+        });
+    });
+</script>
 </body>
 </html>
