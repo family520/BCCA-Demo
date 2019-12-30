@@ -1,0 +1,81 @@
+.header{
+    width: 100%;
+    height: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #101823;
+}
+.header .leftBox {
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.header .leftBox .imgBox{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    padding-left: 0.2rem;
+}
+.header .leftBox .imgBox img{
+    width: 80%;
+    height: auto;
+}
+.header .leftBox .inputBox{
+    margin-left: 0.2rem;
+    width: 4rem;
+    height: 0.48rem;
+    line-height: 0.48rem;
+    position: relative;
+}
+.header .leftBox .inputBox input{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.48rem;
+    background-color: #2D3A49;
+    outline: none;
+    padding-left: 0.2rem;
+    font-size: 0.24rem;
+    color: white;
+    font-weight: bold;
+}
+.header .leftBox .inputBox img{
+    position: absolute;
+    top: 0.09rem;
+    right: 0.12rem;
+    width: 0.26rem;
+    height: 0.27rem;
+    cursor: pointer;
+}
+.header .rightBox{
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-right: 0.5rem;
+}
+.header .rightBox span{
+    display: flex;
+    align-items: center;
+}
+.header .rightBox .userBox{
+    margin:0  0.2rem;
+}
+.header .rightBox .userBox img{
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 0.24rem;
+    margin:0 0.1rem;
+}
+.header .rightBox .userBox span{
+    font-size: 0.2rem;
+}
+.header .rightBox .outBox{
+    margin:0 0.2rem;
+}
+.header .rightBox .outBox span{
+    font-size: 0.18rem;
+    margin-left: 0.1rem;
+    cursor: pointer;
+}

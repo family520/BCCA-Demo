@@ -1,0 +1,27 @@
+/*公共样式*/
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+    font-size: 0.14rem;
+    font-family: "MicrosoftYaHei";
+    text-decoration: none;
+    font-max-size: 20px;
+}
+html{
+    font-size: calc(100vw * 100 / 1920);
+}
+body,html{
+    height: 100%;
+}
+ul {
+    list-style: none;
+}
+button{
+    text-decoration: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
