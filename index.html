@@ -1,61 +1,86 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BCCA-DEMO</title>
     <link rel="stylesheet" href="css/basicStyle.css">
     <link rel="stylesheet" href="css/index.css">
+    <script src="js/vue-2.4.0.js"></script>
+    <script src="js/httpVueLoader.js"></script>
 </head>
+
 <body>
-<!-- 头部盒子 -->
-<div class="header">
-    <div class="leftBox">
-        <div class="imgBox">
-            <img src="img/logo.png" alt="">
+    <div id="app">
+
+        <!-- 头部盒子 -->
+        <div class="header">
+            <div class="leftBox">
+                <div class="imgBox">
+                    <img src="img/logo.png" alt="">
+                </div>
+                <div class="inputBox">
+                    <input type="text">
+                    <img src="img/search.png" alt="">
+                </div>
+            </div>
+            <div class="rightBox">
+                <span class="userBox">
+                    <img src="img/userIcon.png" alt="">
+                    <span>Aico LEE</span>
+                </span>
+                <span class="outBox">
+                    <img src="img/outIcon.png" alt="">
+                    <span>退出</span>
+                </span>
+            </div>
         </div>
-        <div class="inputBox">
-            <input type="text">
-            <img src="img/search.png" alt="">
+        <!--content盒子-->
+        <div class="contentBox">
+            <!-- 数据包盒子 -->
+            <div class="dataBox">
+                <div class="navBox">
+                    <span>全部</span>
+                    <span>智慧中心</span>
+                    <span>智慧照明</span>
+                    <span>设备控制</span>
+                    <span>智慧安防</span>
+                    <select name="" id="">
+                        <option value="">更多</option>
+                        <option value="">智慧校园</option>
+                        <option value="">智慧楼宇</option>
+                    </select>
+                </div>
+                <div class="minBox"></div>
+            </div>
+            <!-- 详情盒子 -->
+            <div class="detailBox"></div>
         </div>
-    </div>
-    <div class="rightBox">
-        <span class="userBox">
-            <img src="img/userIcon.png" alt="">
-            <span>Aico LEE</span>
-        </span>
-        <span class="outBox">
-            <img src="img/outIcon.png" alt="">
-            <span>退出</span>
-        </span>
-    </div>
-</div>
-<!--content盒子-->
-<div class="contentBox">
-    <!-- 数据包盒子 -->
-    <div class="dataBox">
-        <div class="navBox">
-            <span>全部</span>
-            <span>智慧中心</span>
-            <span>智慧照明</span>
-            <span>设备控制</span>
-            <span>智慧安防</span>
-            <select name="" id="">
-                <option value="">更多</option>
-                <option value="">智慧校园</option>
-                <option value="">智慧楼宇</option>
-            </select>
+        <div id="popout" 
+            v-show="popoutValue=='test' ||
+                    popoutValue=='upload' ||
+                    popoutValue== 'succee' ||
+                    popoutValue== 'fail' ||
+                    popoutValue== 'plan' ||
+                    popoutValue== 'intest'"
+        >
+            <component :is="popoutValue"></component>
+
         </div>
-        <div class="minBox"></div>
-    </div>
-    <!-- 详情盒子 -->
-    <div class="detailBox"></div>
-</div>
-<!-- <div>
+        
+
+
+        <!-- <div>
     <iframe src="http://118.31.76.126:20001/device/UIEditor?productCode=00028a01" frameborder="0"></iframe>
 </div> -->
+    </div>
+
+  
+</body>
+
 <script src="js/jquery.min.js"></script>
 <script>
     $(function () {
@@ -69,5 +94,20 @@
         });
     });
 </script>
-</body>
+
+<script>
+    Vue.use(httpVueLoader);
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            popoutValue:"",
+        },
+        methods: {},
+        components: {
+            'test': 'url:components/test.vue'
+        }
+    })
+</script>
+
 </html>

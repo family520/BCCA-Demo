@@ -153,3 +153,33 @@
     height: 100%;
     border:1px solid red;
 }
+
+/* 弹框样式 */
+#popout{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(14,19,26,0.5);
+}
+
+.popoutBox{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    width: 7.61rem;
+	height: 6.06rem;
+    background-color: rgba(27,38,51);
+    transform: translate(-3.8rem,-3.03rem);
+    padding: 0 0.4rem;
+}
+.popoutTitle{
+    height: 0.68rem;
+    line-height: 0.68rem;
+}
+
+.popoutTitle>span{
+    font-size: 0.18rem;
+    color: #ffffff;
+}
