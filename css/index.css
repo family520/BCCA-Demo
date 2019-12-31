@@ -169,17 +169,210 @@
     top:50%;
     left: 50%;
     width: 7.61rem;
-	height: 6.06rem;
+    height: 6.06rem;
+    min-height: 309px;
     background-color: rgba(27,38,51);
     transform: translate(-3.8rem,-3.03rem);
-    padding: 0 0.4rem;
 }
 .popoutTitle{
     height: 0.68rem;
     line-height: 0.68rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.4rem;
 }
 
 .popoutTitle>span{
     font-size: 0.18rem;
     color: #ffffff;
+}
+
+.popoutTitle>img{
+    width: 0.17rem;
+    height: 0.17rem;
+    cursor: pointer;
+}
+
+.popoutImgBox{
+    width: 7.01rem;
+    height: 4.98rem;
+    background-color: #131b2d;
+    margin: auto;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 258px;
+}
+
+.popoutImgBox>.imgShow{
+    display: inline-block;
+    width: 100%;
+    height: 2.75rem;
+    text-align: center;
+    margin-top: 0.6rem;
+    
+}
+
+.popoutImgBox>.imgShow>img{
+    height: 2.75rem;
+}
+.popoutBtns{
+    margin-top: 0.69rem;
+}
+.popoutBtns>input{
+
+    width: 1.21rem;
+    height: 0.36rem;
+    cursor: pointer;
+    color: #ffffff;
+    line-height: 0.36rem;
+    text-align: center;
+    border-radius: 3px;
+    outline: none;
+    margin: 0 0.2rem;
+
+}
+
+.popoutBtns>input:first-child{
+    background-color: #35d8d4;
+}
+
+.popoutBtns>input:last-child{
+    background-color: #999999;
+}
+
+/* 执行计划 */
+.popoutBox .formBox{
+    width: 100%;
+    margin-top: 0.31rem;
+    padding: 0 0.4rem;
+
+}
+
+.formBox>p{
+    width: 100%;
+    text-align: left;
+    font-size: 0.16rem;
+    color: #ffffff;
+}
+
+.formItem{
+    padding: 0 0.32rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.addPlanItems>.addPlanItem{
+    width: 2.6rem;
+    height: 0.2rem;
+    line-height: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 20px;
+    margin-top: 0.2rem;
+   
+}
+
+.addPlanItems>.addPlanItem>span{
+    display: inline-block;
+    font-size: 0.14rem;
+    color: #ffffff;
+    width: 1.13rem;
+    height: 0.2rem;
+    line-height: 1.5;
+    min-height: 20px;
+}
+
+
+.addPlanItems>.addPlanItem>input{
+    width: 1.4rem;
+	height: 0.2rem;
+    background-color: #101723;
+    border-radius: 3px;
+    outline: none;
+    min-height: 20px;
+    padding-left: 0.05rem;
+    border: 0.01rem solid #4b515a;
+    color: #ffffff;
+    font-size: 0.14rem;
+}
+/* 绑定模式 */
+.bindModelItems{
+    display: flex;
+    justify-content: flex-start;
+    padding-right: 0;
+    height: 2rem;
+    overflow-y: scroll;
+}
+.bindModelItem{
+    height: 0.14rem;
+    min-height: 14px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top:0.2rem;
+
+}
+.bindModelItem>span{
+    display: inline-block;
+    width: 0.85rem;
+    min-width: 75px;
+    height: 100%;
+    line-height: 1;
+    font-size: 0.14rem;
+    color: #ffffff;
+
+}
+.bindModelItem>input{
+    margin-left: 0.06rem;
+    height: 0.14rem;
+    min-height: 14px;
+}
+.bindModelBtns{
+    margin-top: 0.4rem;
+}
+
+/* 文件上传 */
+.popoutUploadBox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10rem;
+	height: 3rem;
+    background-color: rgba(27,38,51);
+    transform: translate(-5rem,-1.5rem);
+    min-height: 0;
+}
+.UploadBox{
+    width: 9.4rem;
+	height: 2rem;
+    background-color: #131b2d;
+    margin: auto;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 0;
+    padding-left: 1.49rem;
+}
+.UploadBox>input{
+    width: 5.5rem;
+    border: 0.01rem solid #50555d;
+    color: #ffffff;
+    font-size: 0.14rem;
+}
+.UploadBox>button{
+    width: 0.76rem;
+    height: 0.32rem;
+    background-color: #0492f2;
+    line-height: 0.32rem;
+    font-size: 0.14rem;
+    color: #ffffff;
+    min-height: 23px;
+    margin-left: 0.2rem;
 }

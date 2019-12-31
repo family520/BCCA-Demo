@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="js/vue-2.4.0.js"></script>
     <script src="js/httpVueLoader.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
 </head>
 
 <body>
@@ -62,13 +63,13 @@
         <div id="popout" 
             v-show="popoutValue=='test' ||
                     popoutValue=='upload' ||
-                    popoutValue== 'succee' ||
-                    popoutValue== 'fail' ||
-                    popoutValue== 'plan' ||
-                    popoutValue== 'intest'"
-        >
-            <component :is="popoutValue"></component>
+                    popoutValue== 'plan'">
+            <component 
+            :is="popoutValue"
+            @close="close"
+            :choose_device="choose_device"></component>
 
+        
         </div>
         
 
@@ -102,10 +103,26 @@
         el: "#app",
         data: {
             popoutValue:"",
+            choose_device:{
+                id: 1,
+                isSuccess :true
+            },
         },
-        methods: {},
+        methods: {
+            // 关闭弹框
+            close(){
+
+                this.popoutValue = ""
+            },
+            //打开弹框
+            showPopout(data){
+                this.popoutValue = data;
+            }
+        },
         components: {
-            'test': 'url:components/test.vue'
+            'test': 'url:components/test.vue',
+            'plan': 'url:components/plan.vue',
+            'upload': 'url:components/upload.vue'
         }
     })
 </script>
