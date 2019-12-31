@@ -16,6 +16,7 @@
       </span>
 
       <div class="popoutBtns">
+        <input type="button" value="接入" @click="close" v-show="choose_device.isSuccess && flag == 'img'" />
         <input type="button" :value="btnValue" @click="close" />
       </div>
     </div>

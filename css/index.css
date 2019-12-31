@@ -288,7 +288,8 @@
 }
 
 
-.addPlanItems>.addPlanItem>input{
+.addPlanItems>.addPlanItem>input,
+.addPlanItems>.addPlanItem>select{
     width: 1.4rem;
 	height: 0.2rem;
     background-color: #101723;
@@ -316,6 +317,7 @@
     flex-wrap: wrap;
     align-items: center;
     margin-top:0.2rem;
+    cursor: pointer;
 
 }
 .bindModelItem>span{

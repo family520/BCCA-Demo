@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="js/vue-2.4.0.js"></script>
     <script src="js/httpVueLoader.js"></script>
-    <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+    <script src="js/echars_4.4.0.min.js"></script>
 </head>
 
 <body>
@@ -60,26 +60,20 @@
             <!-- 详情盒子 -->
             <div class="detailBox"></div>
         </div>
-        <div id="popout" 
-            v-show="popoutValue=='test' ||
+        <div id="popout" v-show="popoutValue=='test' ||
                     popoutValue=='upload' ||
-                    popoutValue== 'plan'">
+                    popoutValue=='plan' ||
+                    popoutValue=='setUI'">
             <component 
-            :is="popoutValue"
-            @close="close"
-            :choose_device="choose_device"></component>
-
-        
+                :is="popoutValue" 
+                @close="close" 
+                :choose_device="choose_device"
+                :productcode = productcode></component>
         </div>
-        
 
-
-        <!-- <div>
-    <iframe src="http://118.31.76.126:20001/device/UIEditor?productCode=00028a01" frameborder="0"></iframe>
-</div> -->
     </div>
 
-  
+
 </body>
 
 <script src="js/jquery.min.js"></script>
@@ -102,27 +96,29 @@
     let vm = new Vue({
         el: "#app",
         data: {
-            popoutValue:"",
-            choose_device:{
+            popoutValue: "setUI", //显示哪个弹框
+            choose_device: { // 接入测试具体设备的参数
                 id: 1,
-                isSuccess :true
+                isSuccess: true
             },
+            productcode : "00028a01" //产品编号
         },
         methods: {
             // 关闭弹框
-            close(){
+            close() {
 
                 this.popoutValue = ""
             },
             //打开弹框
-            showPopout(data){
+            showPopout(data) {
                 this.popoutValue = data;
             }
         },
         components: {
             'test': 'url:components/test.vue',
             'plan': 'url:components/plan.vue',
-            'upload': 'url:components/upload.vue'
+            'upload': 'url:components/upload.vue',
+            'setUI': 'url:components/setUI.vue'
         }
     })
 </script>
