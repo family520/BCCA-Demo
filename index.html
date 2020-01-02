@@ -361,6 +361,18 @@
         </div>
 
     </div>
+
+    <div id="popout" v-show="popoutValue=='test' ||
+                    popoutValue=='upload' ||
+                    popoutValue=='plan' ||
+                    popoutValue=='setUI'">
+        <component
+            :is="popoutValue"
+            @close="close"
+            :choose_device="choose_device"
+            :productcode = productcode></component>
+    </div>
+
 </div>
 <!-- <div>
     <iframe src="http://118.31.76.126:20001/device/UIEditor?productCode=00028a01" frameborder="0"></iframe>
@@ -400,6 +412,8 @@
     * createTime:"",       ---- 创建时间
     *
     * */
+
+    Vue.use(httpVueLoader);
     let vm = new Vue({
         el:"#app",
         data(){
@@ -447,8 +461,31 @@
                         isAccess:false,     //是否接入
                         isSuccess: true,    //是否成功
                     },
-                ]
+                ],
+                popoutValue: "test", //显示哪个弹框
+                choose_device: { // 接入测试具体设备的参数
+                    id: 1,
+                    isSuccess: true
+                },
+                productcode : "00028a01" //产品编号
             }
+        },
+        methods: {
+            // 关闭弹框
+            close() {
+
+                this.popoutValue = ""
+            },
+            //打开弹框
+            showPopout(data) {
+                this.popoutValue = data;
+            }
+        },
+        components: {
+            'test': 'url:components/test.vue',
+            'plan': 'url:components/plan.vue',
+            'upload': 'url:components/upload.vue',
+            'setUI': 'url:components/setUI.vue'
         }
     });
 </script>
