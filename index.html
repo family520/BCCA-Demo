@@ -76,7 +76,7 @@
         <p class="titleBox">功能定义</p>
         <div class="showBox">
             <div class="fileBox">
-                <button>上传指令文件</button>
+                <button @click="showPopout('upload')">上传指令文件</button>
                 <input accept="application/vnd.ms-excel" type="file">
             </div>
             <p class="titleName">下行指令</p>
@@ -704,11 +704,8 @@
                     },
                 ],
                 popoutValue: "", //显示哪个弹框
-                choose_device: { // 接入测试具体设备的参数
-                    id: 1,
-                    isSuccess: true
-                },
-                productcode : "00028a01" //产品编号
+                choose_device: {},
+                productcode : "" //产品编号
             }
         },
         methods: {
@@ -719,8 +716,7 @@
             },
             //打开弹框
             showPopout(data) {
-
-                console.log(data);
+                // console.log(data);
                 this.popoutValue = data;
             },
 

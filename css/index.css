@@ -626,6 +626,7 @@
     border: 0.01rem solid #4b515a;
     color: #ffffff;
     font-size: 0.14rem;
+    line-height: 0.2rem;
 }
 /* 绑定模式 */
 .bindModelItems{
