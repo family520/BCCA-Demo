@@ -2,7 +2,7 @@
   <div class="setUIBox">
     <div class="popoutTitle setUITitle">
       <span>UI模板自动生成</span>
-      <img src="../../BCCA-Demo/img/close.png" @click="close" />
+          <img src="../../BCCA-Demo/img/close.png" @click="close" />
     </div>
     <div>
       <iframe

@@ -58,13 +58,13 @@
             </span>
             <div class="MaxBox">
                 <div class="listBox">
-                    <div class="itemBox" v-for="(item,index) in dataList" :key="index">
+                    <div class="itemBox" v-for="(item,index) in dataList" :key="index" >
                         <img :src="item.imgIcon" alt="">
                         <p class="name">{{item.name}}</p>
                         <span class="isLJ"><i :class="{active:item.isConnection}"></i>{{item.isConnection?'已连接':'未连接'}}</span>
                         <div class="btns">
                             <button class="detailBtn">详情</button>
-                            <button class="jrBtn" :class="{active:item.isAccess}">接入</button>
+                            <button class="jrBtn" :class="{active:item.isAccess}" @click="whichDevice(item)">接入</button>
                         </div>
                     </div>
                 </div>
@@ -356,10 +356,10 @@
                 </div>
             </div>
             <div class="btns">
-                <button>测试</button>
-                <button>界面设置</button>
-                <button>接入</button>
-                <button>执行计划</button>
+                <button @click="showPopout('test')">测试</button>
+                <button @click="showPopout('setUI')">界面设置</button>
+                <button @click="showPopout('plan')">执行计划</button>
+                <button>接入完成</button>
             </div>
         </div>
 
@@ -719,7 +719,16 @@
             },
             //打开弹框
             showPopout(data) {
+
+                console.log(data);
                 this.popoutValue = data;
+            },
+
+            //测试传值
+            whichDevice(obj){
+                // console.log(obj);
+                this.choose_device = obj;
+                this.productCode = obj.productCode;
             }
         },
         components: {
