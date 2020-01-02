@@ -15,12 +15,16 @@
 </template>
  
 <script>
+
 module.exports = {
+
+
   mounted() {
     //   console.log('productcode:', this.productcode)
   },
   data: function() {
-    return {};
+    return {
+    };
   },
   props: ["productcode"],
   methods: {

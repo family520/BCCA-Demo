@@ -134,7 +134,6 @@ module.exports = {
   
   methods: {
     close() {
-       
       this.$emit("close");
     }
   }
