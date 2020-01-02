@@ -61,7 +61,7 @@
                     <div class="itemBox" v-for="(item,index) in dataList" :key="index">
                         <img :src="item.imgIcon" alt="">
                         <p class="name">{{item.name}}</p>
-                        <span class="isLJ"><i :class="{active:item.isConnection}"></i>已连接</span>
+                        <span class="isLJ"><i :class="{active:item.isConnection}"></i>{{item.isConnection?'已连接':'未连接'}}</span>
                         <div class="btns">
                             <button class="detailBtn">详情</button>
                             <button class="jrBtn" :class="{active:item.isAccess}">接入</button>
@@ -285,11 +285,11 @@
             <button class="moreBtn">指令解析，定义功能</button>
             <div class="tableBox">
                 <div class="tableItem tableItem001" style="background-color: #3D5466;border-bottom: none;">
-                    <span>指令编号</span>
-                    <span>指令原文</span>
-                    <span>指令说明</span>
-                    <span>参数个数</span>
-                    <span>创建时间</span>
+                    <span>序号</span>
+                    <span>功耗点</span>
+                    <span>指令名称</span>
+                    <span>参数值</span>
+                    <span>模式支持</span>
                     <span>操作</span>
                 </div>
                 <div class="listItemBox listItemBox01">
@@ -433,39 +433,277 @@
                         isSuccess: true,   //是否成功
                         uplinkInstruction:[  //上行指令
                             {
+                                productId:"74520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"0",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"0",
+                                createTime:"2019-12-13T1...",
+                            },
+                            {
                                 productId:"1314520",
                                 instructionName:"smile",
                                 instructionType:"F1",
-                                instructionCode:"network finding",
-                                instructionText:"",
-                                instructionMsg:"",
-                                parameterNumber:"",
-                                createTime:"",
+                                instructionCode:"1",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"2",
+                                createTime:"2019-12-13T1...",
                             }
                         ],
                         downwardInstruction:[ //下行指令
                             {
-
+                                productId:"74520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"0",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"0",
+                                createTime:"2019-12-13T1...",
+                            },
+                            {
+                                productId:"1314520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"1",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"2",
+                                createTime:"2019-12-13T1...",
                             }
                         ],
                         commandParsing:[      //指令解析
                             {
-
+                                code:"1",
+                                ghDian:"插座功率",
+                                instructionName:"read power",
+                                parameterText:"-",
+                                model:"不支持"
+                            },
+                            {
+                                code:"2",
+                                ghDian:"插座状态",
+                                instructionName:"read status",
+                                parameterText:"01，通电；00，断电",
+                                model:"支持"
                             }
                         ],
                     },
                     {
                         id:2,
-                        productCode:"002",
+                        productCode:"001",
                         imgIcon:"img/img10.png",
-                        name:"名称2",
-                        type:"智慧照明",
+                        name:"名称1",
+                        type:"智慧中心",
                         isConnection:false, //是否连接
-                        isAccess:false,     //是否接入
-                        isSuccess: true,    //是否成功
+                        isAccess:false,     //是否接入,
+                        isSuccess: false,   //是否成功
+                        uplinkInstruction:[  //上行指令
+                            {
+                                productId:"74520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"0",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"0",
+                                createTime:"2019-12-13T1...",
+                            },
+                            {
+                                productId:"1314520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"1",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"2",
+                                createTime:"2019-12-13T1...",
+                            }
+                        ],
+                        downwardInstruction:[ //下行指令
+                            {
+                                productId:"74520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"0",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"0",
+                                createTime:"2019-12-13T1...",
+                            },
+                            {
+                                productId:"1314520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"1",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"2",
+                                createTime:"2019-12-13T1...",
+                            }
+                        ],
+                        commandParsing:[      //指令解析
+                            {
+                                code:"1",
+                                ghDian:"插座功率",
+                                instructionName:"read power",
+                                parameterText:"-",
+                                model:"不支持"
+                            },
+                            {
+                                code:"2",
+                                ghDian:"插座状态",
+                                instructionName:"read status",
+                                parameterText:"01，通电；00，断电",
+                                model:"支持"
+                            }
+                        ],
+                    },
+                    {
+                        id:3,
+                        productCode:"001",
+                        imgIcon:"img/img01.png",
+                        name:"名称1",
+                        type:"智慧中心",
+                        isConnection:true, //是否连接
+                        isAccess:true,     //是否接入,
+                        isSuccess: true,   //是否成功
+                        uplinkInstruction:[  //上行指令
+                            {
+                                productId:"74520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"0",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"0",
+                                createTime:"2019-12-13T1...",
+                            },
+                            {
+                                productId:"1314520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"1",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"2",
+                                createTime:"2019-12-13T1...",
+                            }
+                        ],
+                        downwardInstruction:[ //下行指令
+                            {
+                                productId:"74520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"0",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"0",
+                                createTime:"2019-12-13T1...",
+                            },
+                            {
+                                productId:"1314520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"1",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"2",
+                                createTime:"2019-12-13T1...",
+                            }
+                        ],
+                        commandParsing:[      //指令解析
+                            {
+                                code:"1",
+                                ghDian:"插座功率",
+                                instructionName:"read power",
+                                parameterText:"-",
+                                model:"不支持"
+                            },
+                            {
+                                code:"2",
+                                ghDian:"插座状态",
+                                instructionName:"read status",
+                                parameterText:"01，通电；00，断电",
+                                model:"支持"
+                            }
+                        ],
+                    },
+                    {
+                        id:4,
+                        productCode:"001",
+                        imgIcon:"img/img01.png",
+                        name:"名称1",
+                        type:"智慧中心",
+                        isConnection:true, //是否连接
+                        isAccess:true,     //是否接入,
+                        isSuccess: true,   //是否成功
+                        uplinkInstruction:[  //上行指令
+                            {
+                                productId:"74520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"0",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"0",
+                                createTime:"2019-12-13T1...",
+                            },
+                            {
+                                productId:"1314520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"1",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"2",
+                                createTime:"2019-12-13T1...",
+                            }
+                        ],
+                        downwardInstruction:[ //下行指令
+                            {
+                                productId:"74520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"0",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"0",
+                                createTime:"2019-12-13T1...",
+                            },
+                            {
+                                productId:"1314520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"1",
+                                instructionText:"network finding",
+                                instructionMsg:"组网",
+                                parameterNumber:"2",
+                                createTime:"2019-12-13T1...",
+                            }
+                        ],
+                        commandParsing:[      //指令解析
+                            {
+                                code:"1",
+                                ghDian:"插座功率",
+                                instructionName:"read power",
+                                parameterText:"-",
+                                model:"不支持"
+                            },
+                            {
+                                code:"2",
+                                ghDian:"插座状态",
+                                instructionName:"read status",
+                                parameterText:"01，通电；00，断电",
+                                model:"支持"
+                            }
+                        ],
                     },
                 ],
-                popoutValue: "setUI", //显示哪个弹框
+                popoutValue: "", //显示哪个弹框
                 choose_device: { // 接入测试具体设备的参数
                     id: 1,
                     isSuccess: true

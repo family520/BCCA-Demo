@@ -10,11 +10,10 @@
     font-max-size: 20px;
 }
 html{
-    height: 100vh;
     font-size: calc(100vw * 100 / 1920);
 }
 body,html{
-    height: 100vh;
+    /*height: 100vh;*/
 }
 ul {
     list-style: none;
