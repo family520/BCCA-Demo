@@ -1,82 +1,372 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BCCA-DEMO</title>
     <link rel="stylesheet" href="css/basicStyle.css">
     <link rel="stylesheet" href="css/index.css">
-    <script src="js/vue-2.4.0.js"></script>
-    <script src="js/httpVueLoader.js"></script>
-    <script src="js/echars_4.4.0.min.js"></script>
 </head>
-
 <body>
-    <div id="app">
+<!-- 头部盒子 -->
+<div class="header">
+    <div class="leftBox">
+        <div class="imgBox">
+            <img src="img/logo.png" alt="">
+        </div>
+        <div class="inputBox">
+            <input type="text">
+            <img src="img/search.png" alt="">
+        </div>
+    </div>
+    <div class="rightBox">
+        <span class="userBox">
+            <img src="img/userIcon.png" alt="">
+            <span>Aico LEE</span>
+        </span>
+        <span class="outBox">
+            <img src="img/outIcon.png" alt="">
+            <span>退出</span>
+        </span>
+    </div>
+</div>
+<!--content盒子-->
+<div class="contentBox" id="app">
+    <!-- 数据包盒子 -->
+    <div class="dataBox">
+        <div class="navBox">
+            <span>全部</span>
+            <span>智慧中心</span>
+            <span>智慧照明</span>
+            <span>设备控制</span>
+            <span>智慧安防</span>
+            <select name="" id="">
+                <option value="">更多</option>
+                <option value="">智慧校园</option>
+                <option value="">智慧楼宇</option>
+            </select>
+        </div>
+        <div class="minBox">
+            <span class="checkBox">
+                <span class="active"><i></i>已连接设备</span>
+                <span><i></i>未连接设备</span>
+            </span>
+            <div class="MaxBox">
+                <div class="listBox">
+                    <div class="itemBox" v-for="(item,index) in dataList" :key="index">
+                        <img :src="item.imgIcon" alt="">
+                        <p class="name">{{item.name}}</p>
+                        <span class="isLJ"><i :class="{active:item.isConnection}"></i>已连接</span>
+                        <div class="btns">
+                            <button class="detailBtn">详情</button>
+                            <button class="jrBtn" :class="{active:item.isAccess}">接入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 详情盒子 -->
+    <div class="detailBox">
+        <p class="titleBox">功能定义</p>
+        <div class="showBox">
+            <div class="fileBox">
+                <button>上传指令文件</button>
+                <input accept="application/vnd.ms-excel" type="file">
+            </div>
+            <p class="titleName">下行指令</p>
+            <div class="tableBox">
+                <div class="tableItem" style="background-color: #3D5466;border-bottom: none;">
+                    <span>产品编号</span>
+                    <span>指令名称</span>
+                    <span>指令类型</span>
+                    <span>指令编号</span>
+                    <span>指令原文</span>
+                    <span>指令说明</span>
+                    <span>参数个数</span>
+                    <span>创建时间</span>
+                    <span>操作</span>
+                </div>
+                <div class="listItemBox">
+                    <div class="tableItem">
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="zlbjBtn">指令编辑</button>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="zlbjBtn">指令编辑</button>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="zlbjBtn">指令编辑</button>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="zlbjBtn">指令编辑</button>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
 
-        <!-- 头部盒子 -->
-        <div class="header">
-            <div class="leftBox">
-                <div class="imgBox">
-                    <img src="img/logo.png" alt="">
+                    <span>00026001</span>
+                    <span>read version</span>
+                    <span>F1</span>
+                    <span>1</span>
+                    <span>network find...</span>
+                    <span>组网</span>
+                    <span>0</span>
+                    <span>2019-12-13T1...</span>
+                    <span>
+                        <button class="zlbjBtn">指令编辑</button>
+                        <button class="delBtn">删除</button>
+                    </span>
                 </div>
-                <div class="inputBox">
-                    <input type="text">
-                    <img src="img/search.png" alt="">
+                    <div class="tableItem">
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="zlbjBtn">指令编辑</button>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="rightBox">
-                <span class="userBox">
-                    <img src="img/userIcon.png" alt="">
-                    <span>Aico LEE</span>
-                </span>
-                <span class="outBox">
-                    <img src="img/outIcon.png" alt="">
-                    <span>退出</span>
-                </span>
-            </div>
-        </div>
-        <!--content盒子-->
-        <div class="contentBox">
-            <!-- 数据包盒子 -->
-            <div class="dataBox">
-                <div class="navBox">
-                    <span>全部</span>
-                    <span>智慧中心</span>
-                    <span>智慧照明</span>
-                    <span>设备控制</span>
-                    <span>智慧安防</span>
-                    <select name="" id="">
-                        <option value="">更多</option>
-                        <option value="">智慧校园</option>
-                        <option value="">智慧楼宇</option>
-                    </select>
+            <p class="titleName">上行指令</p>
+            <div class="tableBox">
+                <div class="tableItem" style="background-color: #3D5466;border-bottom: none;">
+                    <span>产品编号</span>
+                    <span>指令名称</span>
+                    <span>指令类型</span>
+                    <span>指令编号</span>
+                    <span>指令原文</span>
+                    <span>指令说明</span>
+                    <span>参数个数</span>
+                    <span>创建时间</span>
+                    <span>操作</span>
                 </div>
-                <div class="minBox"></div>
+                <div class="listItemBox">
+                    <div class="tableItem">
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="zlbjBtn">指令编辑</button>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="zlbjBtn">指令编辑</button>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="zlbjBtn">指令编辑</button>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="zlbjBtn">指令编辑</button>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                        <button class="zlbjBtn">指令编辑</button>
+                        <button class="delBtn">删除</button>
+                    </span>
+                    </div>
+                    <div class="tableItem">
+
+                        <span>00026001</span>
+                        <span>read version</span>
+                        <span>F1</span>
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                        <button class="zlbjBtn">指令编辑</button>
+                        <button class="delBtn">删除</button>
+                    </span>
+                    </div>
+                </div>
             </div>
-            <!-- 详情盒子 -->
-            <div class="detailBox"></div>
-        </div>
-        <div id="popout" v-show="popoutValue=='test' ||
-                    popoutValue=='upload' ||
-                    popoutValue=='plan' ||
-                    popoutValue=='setUI'">
-            <component 
-                :is="popoutValue" 
-                @close="close" 
-                :choose_device="choose_device"
-                :productcode = productcode></component>
+            <button class="moreBtn">指令解析，定义功能</button>
+            <div class="tableBox">
+                <div class="tableItem tableItem001" style="background-color: #3D5466;border-bottom: none;">
+                    <span>指令编号</span>
+                    <span>指令原文</span>
+                    <span>指令说明</span>
+                    <span>参数个数</span>
+                    <span>创建时间</span>
+                    <span>操作</span>
+                </div>
+                <div class="listItemBox listItemBox01">
+                    <div class="tableItem">
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                    <div class="tableItem">
+                        <span>1</span>
+                        <span>network find...</span>
+                        <span>组网</span>
+                        <span>0</span>
+                        <span>2019-12-13T1...</span>
+                        <span>
+                            <button class="delBtn">删除</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="btns">
+                <button>测试</button>
+                <button>界面设置</button>
+                <button>接入</button>
+                <button>执行计划</button>
+            </div>
         </div>
 
     </div>
-
-
-</body>
-
+</div>
+<!-- <div>
+    <iframe src="http://118.31.76.126:20001/device/UIEditor?productCode=00028a01" frameborder="0"></iframe>
+</div> -->
 <script src="js/jquery.min.js"></script>
+<script src="js/vue.min.js"></script>
 <script>
     $(function () {
         //切换样式
@@ -87,40 +377,80 @@
                 $(this).addClass("active").siblings().removeClass("active");
             });
         });
+
+        $(".checkBox span").each(function () {
+            //初始化
+            $(".checkBox span").eq(0).addClass("active");
+            $(this).click(function () {
+                $(this).addClass("active").siblings().removeClass("active");
+            });
+        });
     });
 </script>
-
 <script>
-    Vue.use(httpVueLoader);
-
+    /*
+    * 上下行指令名称
+    * productId:"",        ---- 产品编号
+    * instructionName:"",  ---- 指令名称
+    * instructionType:"",  ---- 指令类型
+    * instructionCode:"",  ---- 指令编号
+    * instructionText:"",  ---- 指令原文
+    * instructionMsg:"",   ---- 指令说明
+    * parameterNumber:"",  ---- 参数个数
+    * createTime:"",       ---- 创建时间
+    *
+    * */
     let vm = new Vue({
-        el: "#app",
-        data: {
-            popoutValue: "setUI", //显示哪个弹框
-            choose_device: { // 接入测试具体设备的参数
-                id: 1,
-                isSuccess: true
-            },
-            productcode : "00028a01" //产品编号
-        },
-        methods: {
-            // 关闭弹框
-            close() {
+        el:"#app",
+        data(){
+            return{
+                dataList:[
+                    {
+                        id:1,
+                        productCode:"001",
+                        imgIcon:"img/img01.png",
+                        name:"名称1",
+                        type:"智慧中心",
+                        isConnection:true, //是否连接
+                        isAccess:true,     //是否接入,
+                        isSuccess: true,   //是否成功
+                        uplinkInstruction:[  //上行指令
+                            {
+                                productId:"1314520",
+                                instructionName:"smile",
+                                instructionType:"F1",
+                                instructionCode:"network finding",
+                                instructionText:"",
+                                instructionMsg:"",
+                                parameterNumber:"",
+                                createTime:"",
+                            }
+                        ],
+                        downwardInstruction:[ //下行指令
+                            {
 
-                this.popoutValue = ""
-            },
-            //打开弹框
-            showPopout(data) {
-                this.popoutValue = data;
+                            }
+                        ],
+                        commandParsing:[      //指令解析
+                            {
+
+                            }
+                        ],
+                    },
+                    {
+                        id:2,
+                        productCode:"002",
+                        imgIcon:"img/img10.png",
+                        name:"名称2",
+                        type:"智慧照明",
+                        isConnection:false, //是否连接
+                        isAccess:false,     //是否接入
+                        isSuccess: true,    //是否成功
+                    },
+                ]
             }
-        },
-        components: {
-            'test': 'url:components/test.vue',
-            'plan': 'url:components/plan.vue',
-            'upload': 'url:components/upload.vue',
-            'setUI': 'url:components/setUI.vue'
         }
-    })
+    });
 </script>
-
+</body>
 </html>
