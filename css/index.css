@@ -307,8 +307,11 @@
     height: calc(100% - 0.3rem);
     background-color: #1c2735;
     padding: 0.2rem;
+    overflow-x: hidden;
 }
-
+.contentBox .showBox::-webkit-scrollbar {
+    display: none;
+}
 .contentBox .fileBox{
     width: 1.4rem;
     height: 0.36rem;
