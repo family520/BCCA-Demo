@@ -570,13 +570,10 @@
 
 }
 
-.popoutBtns>input:first-child{
-    background-color: #35d8d4;
+.popoutBtns>input{
+    background-color: #0492F2;
 }
 
-.popoutBtns>input:last-child{
-    background-color: #999999;
-}
 
 /* 执行计划 */
 .popoutBox .formBox{
