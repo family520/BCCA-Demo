@@ -1,8 +1,8 @@
 <template>
   <div class="setUIBox">
     <div class="popoutTitle setUITitle">
-      <span>测试</span>
-      <img src="../../BCCA-Demo/img/close.png" @click="close" />
+      <span>UI模板自动生成</span>
+          <img src="../../BCCA-Demo/img/close.png" @click="close" />
     </div>
     <div>
       <iframe
@@ -15,12 +15,16 @@
 </template>
  
 <script>
+
 module.exports = {
+
+
   mounted() {
     //   console.log('productcode:', this.productcode)
   },
   data: function() {
-    return {};
+    return {
+    };
   },
   props: ["productcode"],
   methods: {
