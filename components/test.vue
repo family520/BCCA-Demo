@@ -16,8 +16,8 @@
       </span>
 
       <div class="popoutBtns">
-        <input type="button" value="接入" @click="close" v-show="choose_device.isSuccess && flag == 'img'" />
-        <input type="button" :value="btnValue" @click="close" />
+        <input type="button" value="接入" @click="close1" v-show="choose_device.isSuccess && flag == 'img'" />
+        <input type="button" :value="btnValue" @click="close1" />
       </div>
     </div>
   </div>
@@ -135,6 +135,9 @@ module.exports = {
   methods: {
     close() {
       this.$emit("close");
+    },
+    close1() {
+      this.$emit("close",'test',this.choose_device.isSuccess);
     }
   }
 };

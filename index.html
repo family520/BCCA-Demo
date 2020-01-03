@@ -57,7 +57,8 @@
         </div>
         <div class="minBox">
             <span class="checkBox">
-                <span class="active" @click="showClassify('已连接设备','true')"><i></i>已连接设备</span>
+                <span class="active showAll"><i></i>全部</span>
+                <span @click="showClassify('已连接设备','true')"><i></i>已连接设备</span>
                 <span @click="showClassify('未连接设备','false')"><i></i>未连接设备</span>
             </span>
             <div class="MaxBox">
@@ -67,8 +68,8 @@
                         <p class="name">{{item.name}}</p>
                         <span class="isLJ"><i :class="{active:item.isConnection}"></i>{{item.isConnection?'已连接':'未连接'}}</span>
                         <div class="btns">
-                            <button class="detailBtn" @click="detailData(index)">详情</button>
-                            <button class="jrBtn" :disabled="item.isAccess" :class="{active:item.isAccess}" @click="whichDevice(item)">接入</button>
+                            <button class="detailBtn" :disabled="!item.isConnection" :class="{active:!item.isConnection}" @click="detailData(index,item.isConnection),whichDevice(item)">详情</button>
+                            <button class="jrBtn" :disabled="item.isAccess" :class="{active:!item.isAccess}" @click="detailData(index,item.isConnection),whichDevice(item)">接入</button>
                         </div>
                     </div>
                 </div>
@@ -81,7 +82,7 @@
         <div class="showBox">
             <div class="fileBox">
                 <button @click="showPopout('upload')">上传指令文件</button>
-                <input accept="application/vnd.ms-excel" type="file">
+<!--                <input accept="application/vnd.ms-excel" type="file">-->
             </div>
             <p class="titleName">下行指令</p>
             <div class="tableBox">
@@ -97,7 +98,7 @@
                     <span>操作</span>
                 </div>
                 <div class="listItemBox">
-                    <div class="tableItem" v-for="item in downwardInstructionData">
+                    <div v-show="isShow" class="tableItem" v-for="item in downwardInstructionData">
                         <span>{{item.productId}}</span>
                         <span>{{item.instructionName}}</span>
                         <span>{{item.instructionType}}</span>
@@ -127,7 +128,7 @@
                     <span>操作</span>
                 </div>
                 <div class="listItemBox">
-                    <div class="tableItem" v-for="item in uplinkInstructionData">
+                    <div v-show="isShow" class="tableItem" v-for="item in uplinkInstructionData">
                         <span>{{item.productId}}</span>
                         <span>{{item.instructionName}}</span>
                         <span>{{item.instructionType}}</span>
@@ -154,7 +155,7 @@
                     <span>操作</span>
                 </div>
                 <div class="listItemBox listItemBox01">
-                    <div class="tableItem" v-for="(item,index) in commandParsingData" :key="index">
+                    <div v-show="isShow" class="tableItem" v-for="(item,index) in commandParsingData" :key="index">
                         <span>{{item.code}}</span>
                         <span>{{item.ghDian}}</span>
                         <span>{{item.instructionName}}</span>
@@ -283,6 +284,13 @@
             // }
 
         });
+        //showAll
+        $(".showAll").on('click',function () {
+            let classifyType = vm.classifyType;
+            if(classifyType == "全部"){
+                this.showData = this.dataList;
+            }
+        });
 
         // //是否连接
         // $(".checkBox span").each(function () {
@@ -406,7 +414,7 @@
                         type:"智慧照明",
                         isConnection:false, //是否连接
                         isAccess:false,     //是否接入,
-                        isSuccess: false,   //是否成功
+                        isSuccess: true,   //是否成功
                         uplinkInstruction:[  //上行指令
                             {
                                 productId:"74520",
@@ -966,24 +974,43 @@
                 popoutValue: "", //显示哪个弹框
                 choose_device: {},
                 productcode : "",//产品编号
+                isShow:true,
                 classifyType : "全部"//分类的种类
             }
         },
         methods: {
             // 关闭弹框
-            close() {
+            close(type,value) {
 
-                this.popoutValue = ""
+                this.popoutValue = "";
+                if(type === 'upload'){
+                    this.isShow = true;
+                }else if(type === 'test'){
+                   if(value){
+                       console.log(value);
+                       console.log(this.choose_device.id);
+                       let id = this.choose_device.id;
+                       for(let i=0;i < this.showData.length; i++){
+                           if(this.showData[i].id == id){
+                               this.showData[i].imgIcon = "img/img01.png";
+                               this.showData[i].isConnection = true;
+                               this.showData[i].isAccess = true;
+                           }
+                       }
+                   }else {
+                       return ;
+                   }
+                }
             },
             //打开弹框
+
             showPopout(data) {
-                // console.log(data);
                 this.popoutValue = data;
             },
 
             //测试传值
             whichDevice(obj){
-                // console.log(obj);
+                console.log(obj);
                 this.choose_device = obj;
                 this.productCode = obj.productCode;
             },
@@ -1004,17 +1031,17 @@
                     }
                 }
                 else {
-                    if(this.classifyType == "全部"){
+                    if(this.classifyType === "全部"){
                         for (let i =0; i < this.dataList.length; i++){
-                            if (this.dataList[i].isConnection.toString() == type ) {
+                            if (this.dataList[i].isConnection.toString() === type ) {
                                 this.showData.push(this.dataList[i]);
                             }
                         }
                     }
                     else {
                         for (let i =0; i < this.dataList.length; i++){
-                            if (this.dataList[i].type == this.classifyType
-                                && this.dataList[i].isConnection.toString() == type){
+                            if (this.dataList[i].type === this.classifyType
+                                && this.dataList[i].isConnection.toString() === type){
                                 this.showData.push(this.dataList[i]);
                             }
                         }
@@ -1024,10 +1051,17 @@
             },
 
             //显示详情
-            detailData(index){
+            detailData(index,isConnection){
+                // let title = $(this).attr("title");
+                // console.log(isConnection);
+                if(isConnection === false){
+                    this.isShow = false;
+                }else {
+                    this.isShow = true
+                }
                 //上行指令
                 this.uplinkInstructionData = [];
-                console.log(this.showData[index].uplinkInstruction);
+                // console.log(this.showData[index].uplinkInstruction);
                 let one = this.showData[index].uplinkInstruction;
                 for(let i =0; i < one.length; i++){
                     this.uplinkInstructionData.push({
@@ -1043,7 +1077,7 @@
                 }
                 //下行指令
                 this.downwardInstructionData = [];
-                console.log(this.showData[index].downwardInstruction);
+                // console.log(this.showData[index].downwardInstruction);
                 let two = this.showData[index].downwardInstruction;
                 for(let i =0; i < one.length; i++){
                     this.downwardInstructionData.push({
@@ -1059,7 +1093,7 @@
                 }
                 //解析指令
                 this.commandParsingData = [];
-                console.log(this.showData[index].commandParsing);
+                // console.log(this.showData[index].commandParsing);
                 let three = this.showData[index].commandParsing;
                 for(let i =0; i < one.length; i++){
                     this.commandParsingData.push({
