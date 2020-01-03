@@ -270,13 +270,16 @@
 }
 .listBox .itemBox .btns .detailBtn{
     background-color: #0492F2;
+
 }
 .listBox .itemBox .btns .detailBtn.active{
-    background-color: #999;
-    border:none;
+    background: none;
+    color: #999;
+    border:1px solid #999;
 }
 .listBox .itemBox .btns .jrBtn{
     background: none;
+    color: #999;
     border: 1px solid #3C4148;
 }
 .listBox .itemBox .btns .jrBtn.active{
