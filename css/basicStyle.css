@@ -38,7 +38,7 @@ html{
     font-size: calc(100vw * 100 / 1920);
 }
 body,html{
-    height: 1080px;
+    height: 100%;
     position: relative;
 }
 ul {
@@ -53,5 +53,9 @@ button{
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+[v-cloak]{
+    display: none
 }
 

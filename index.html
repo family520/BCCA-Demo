@@ -36,7 +36,7 @@
     </div>
 </div>
 <!--content盒子-->
-<div class="contentBox" id="app">
+<div class="contentBox" id="app" v-clock>
     <!-- 数据包盒子 -->
     <div class="dataBox">
         <div class="navBox">
@@ -144,7 +144,7 @@
                     </div>
                 </div>
             </div>
-            <button class="moreBtn" @click="isSetShow = 'true'">指令解析，定义功能</button>
+            <button class="moreBtn" @click="isShow?isSetShow = true:isSetShow = false;">指令解析，定义功能</button>
             <div class="tableBox">
                 <div class="tableItem tableItem001" style="background-color: #3D5466;border-bottom: none;">
                     <span>序号</span>
@@ -171,7 +171,7 @@
                 <button @click="showPopout('test')">测试</button>
                 <button @click="showPopout('setUI')">界面设置</button>
                 <button @click="showPopout('plan')">执行计划</button>
-                <button>接入完成</button>
+                <button @click="getContorl">接入完成</button>
             </div>
         </div>
 
@@ -974,7 +974,7 @@
                 popoutValue: "", //显示哪个弹框
                 choose_device: {},
                 productcode : "",//产品编号
-                isShow:true,    //下行指令 上行指令
+                isShow:false,    //下行指令 上行指令
                 isSetShow:false, //指令解析，定义功能
                 classifyType : "全部"//分类的种类
             }
@@ -1010,9 +1010,8 @@
                 this.popoutValue = data;
             },
 
-            //测试传值
+            //测试传值 当前设备是否能够接通以及 设备的产品Mac号
             whichDevice(obj){
-                console.log(obj);
                 this.choose_device = obj;
                 this.productCode = obj.productCode;
             },
@@ -1108,8 +1107,11 @@
                         model:three[i].model
                     })
                 }
-            }
+            },
 
+            getContorl(){
+                console.log('跳转:','跳转')
+            }
         },
         components: {
             'test': 'url:components/test.vue',
