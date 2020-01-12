@@ -144,7 +144,7 @@
                     </div>
                 </div>
             </div>
-            <button class="moreBtn">指令解析，定义功能</button>
+            <button class="moreBtn" @click="isSetShow = 'true'">指令解析，定义功能</button>
             <div class="tableBox">
                 <div class="tableItem tableItem001" style="background-color: #3D5466;border-bottom: none;">
                     <span>序号</span>
@@ -155,7 +155,7 @@
                     <span>操作</span>
                 </div>
                 <div class="listItemBox listItemBox01">
-                    <div v-show="isShow" class="tableItem" v-for="(item,index) in commandParsingData" :key="index">
+                    <div v-show="isSetShow" class="tableItem" v-for="(item,index) in commandParsingData" :key="index">
                         <span>{{item.code}}</span>
                         <span>{{item.ghDian}}</span>
                         <span>{{item.instructionName}}</span>
@@ -167,7 +167,7 @@
                     </div>
                 </div>
             </div>
-            <div class="btns">
+            <div class="btns" v-show="isSetShow">
                 <button @click="showPopout('test')">测试</button>
                 <button @click="showPopout('setUI')">界面设置</button>
                 <button @click="showPopout('plan')">执行计划</button>
@@ -974,7 +974,8 @@
                 popoutValue: "", //显示哪个弹框
                 choose_device: {},
                 productcode : "",//产品编号
-                isShow:true,
+                isShow:true,    //下行指令 上行指令
+                isSetShow:false, //指令解析，定义功能
                 classifyType : "全部"//分类的种类
             }
         },
@@ -985,10 +986,11 @@
                 this.popoutValue = "";
                 if(type === 'upload'){
                     this.isShow = true;
+                    this.isSetShow = false;
                 }else if(type === 'test'){
                    if(value){
-                       console.log(value);
-                       console.log(this.choose_device.id);
+                    //    console.log(value);
+                    //    console.log(this.choose_device.id);
                        let id = this.choose_device.id;
                        for(let i=0;i < this.showData.length; i++){
                            if(this.showData[i].id == id){
@@ -1002,8 +1004,8 @@
                    }
                 }
             },
+            
             //打开弹框
-
             showPopout(data) {
                 this.popoutValue = data;
             },
@@ -1056,8 +1058,10 @@
                 // console.log(isConnection);
                 if(isConnection === false){
                     this.isShow = false;
+                    this.isSetShow = false;
                 }else {
-                    this.isShow = true
+                    this.isShow = true;
+                    this.isSetShow = true;
                 }
                 //上行指令
                 this.uplinkInstructionData = [];
