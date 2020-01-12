@@ -39,6 +39,7 @@ html{
 }
 body,html{
     height: 1080px;
+    position: relative;
 }
 ul {
     list-style: none;

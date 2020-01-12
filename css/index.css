@@ -285,10 +285,8 @@
 .listBox .itemBox .btns .jrBtn.active{
     background-color: #35D8D4;
     border:none;
+    color: #fff;
 }
-
-
-
 /*
    详情盒子盒子样式
 */
@@ -497,6 +495,9 @@
     width: 100%;
     height: 100%;
     background-color: rgba(14,19,26,0.5);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .popoutBox{
@@ -570,9 +571,16 @@
 
 }
 
-.popoutBtns>input{
-    background-color: #0492F2;
+.popoutBtns>input:last-child{
+    background: none;
+    border: 1px solid #3C4148;
 }
+
+.popoutBtns>input:first-child{
+    background-color: #0492F2;
+    border: none;
+}
+
 
 
 /* 执行计划 */
