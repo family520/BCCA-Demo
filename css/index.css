@@ -452,11 +452,19 @@
     max-height:0.91rem;
     overflow-x: hidden;
 }
-
 .detailBox .tableBox .listItemBox01::-webkit-scrollbar {
     display: none;
 }
-
+/*.tableItem111 > span{*/
+/*    display: block;*/
+/*    width: 1rem;*/
+/*    overflow: hidden;*/
+/*    white-space: nowrap;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+/*.tableItem111 > span:nth-child(1){*/
+/*    width: 5rem;*/
+/*}*/
 .showBox .btns{
     margin-top: 0.8rem;
     width: 100%;
