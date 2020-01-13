@@ -195,26 +195,24 @@
 <script src="js/vue.min.js"></script>
 <script>
     $(function () {
+
         //跳转
         $("#jump").click(function () {
+            var data = {'userAccount':'admin','userPassword':'123321'};
             $.ajax({
-                type: 'POST',
-                url: "http://113.204.9.70:8084/index/login.json",
-                data: JSON.stringify({
-                    "data": {
-                        "userAccount": "admin",
-                        "userPassword": "123321"
+                url: 'http://113.204.9.70:8084/index/getToken.json',
+                dataType: 'json',
+                type: 'post',
+                data: JSON.stringify(data),
+                contentType : 'application/json',
+                async:false,
+                success:function (data) {
+                    if(data.status==200){
+                        window.location.href = 'http://113.204.9.70:8084/html/productManage/productManage.html?token='+data.token;
+                    }else{
+                        alert(data.msg);
                     }
-                }),
-                success: function (res) {
-                    if (res.status == 200) {
-                        window.location.href = 'http://113.204.9.70:8084/html/productManage/productManage.html'
-                    } else {
-                        alert("登录失败")
-                    }
-                },
-                dataType: "json",
-                contentType: 'application/json',
+                }
             });
         })
         
