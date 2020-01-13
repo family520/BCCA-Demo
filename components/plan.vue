@@ -103,7 +103,7 @@ module.exports = {
       ]
     };
   },
-  methods: {
+    methods: {
     close() {
       this.$emit("close");
     },
@@ -118,7 +118,12 @@ module.exports = {
       this.executePlan = this.prepositionTime = this.delayTime = "";
       this.prepositionActive = "1";
     }
-  }
+  },
+    mounted(){
+        this.modelList = this.choose_device.modelList
+    },
+    props: ['choose_device'],
+
 };
 </script>
  

@@ -27,7 +27,7 @@
     <div class="rightBox">
         <span class="userBox">
             <img src="img/userIcon.png" alt="">
-            <span>Aico LEE</span>
+            <span>APCOS</span>
         </span>
         <span class="outBox">
             <img src="img/outIcon.png" alt="">
@@ -144,7 +144,7 @@
                     </div>
                 </div>
             </div>
-            <button class="moreBtn" @click="isShow?isSetShow = true:isSetShow = false;">指令解析，定义功能</button>
+            <button class="moreBtn" @click="isShow?isSetShow = true:isSetShow = false">指令解析，定义功能</button>
             <div class="tableBox">
                 <div class="tableItem tableItem001" style="background-color: #3D5466;border-bottom: none;">
                     <span>序号</span>
@@ -171,7 +171,7 @@
                 <button @click="showPopout('test')">测试</button>
                 <button @click="showPopout('setUI')">界面设置</button>
                 <button @click="showPopout('plan')">执行计划</button>
-                <button @click="getContorl">接入完成</button>
+                <button id="jump">接入完成</button>
             </div>
         </div>
 
@@ -189,13 +189,36 @@
     </div>
 
 </div>
-<!-- <div>
-    <iframe src="http://118.31.76.126:20001/device/UIEditor?productCode=00028a01" frameborder="0"></iframe>
-</div> -->
+
+
 <script src="js/jquery.min.js"></script>
 <script src="js/vue.min.js"></script>
 <script>
     $(function () {
+        //跳转
+        $("#jump").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: "http://113.204.9.70:8084/index/login.json",
+                data: JSON.stringify({
+                    "data": {
+                        "userAccount": "admin",
+                        "userPassword": "123321"
+                    }
+                }),
+                success: function (res) {
+                    if (res.status == 200) {
+                        window.location.href = 'http://113.204.9.70:8084/html/productManage/productManage.html'
+                    } else {
+                        alert("登录失败")
+                    }
+                },
+                dataType: "json",
+                contentType: 'application/json',
+            });
+        })
+        
+        
         //切换样式
         $(".navBox span").each(function () {
             //初始化
@@ -405,6 +428,26 @@
                                 model:"支持"
                             }
                         ],
+                        modelList: [
+                            { id: 1, isCheck: false, name: "会客模式" },
+                            { id: 2, isCheck: false, name: "离家模式" },
+                            { id: 3, isCheck: false, name: "回家模式" },
+                            { id: 4, isCheck: false, name: "观影模式" },
+                            { id: 5, isCheck: false, name: "夜间模式" },
+                            { id: 6, isCheck: false, name: "白昼模式" },
+                            { id: 7, isCheck: false, name: "K歌模式" },
+                            { id: 8, isCheck: false, name: "浪漫晚餐模式" },
+                            { id: 9, isCheck: false, name: "睡眠模式" },
+                            { id: 10, isCheck: false, name: "起床模式" },
+                            { id: 11, isCheck: false, name: "早餐模式" },
+                            { id: 12, isCheck: false, name: "安防模式" },
+                            { id: 13, isCheck: false, name: "守护模式" },
+                            { id: 14, isCheck: false, name: "阅读模式" },
+                            { id: 15, isCheck: false, name: "聚会模式" },
+                            { id: 16, isCheck: false, name: "娱乐模式" },
+                            { id: 17, isCheck: false, name: "运动模式" },
+                            { id: 18, isCheck: false, name: "办公模式" }
+                        ]
                     },
                     {
                         id:2,
@@ -475,6 +518,25 @@
                                 model:"支持"
                             }
                         ],
+                        modelList: [
+                            { id: 1, isCheck: false, name: "会客模式" },
+                            { id: 2, isCheck: false, name: "离家模式" },
+                            { id: 3, isCheck: false, name: "回家模式" },
+                            { id: 4, isCheck: false, name: "观影模式" },
+                            { id: 5, isCheck: false, name: "夜间模式" },
+                            { id: 6, isCheck: false, name: "白昼模式" },
+                            { id: 7, isCheck: false, name: "K歌模式" },
+                            { id: 8, isCheck: false, name: "浪漫晚餐模式" },
+                            { id: 9, isCheck: false, name: "睡眠模式" },
+                            { id: 10, isCheck: false, name: "起床模式" },
+                            { id: 11, isCheck: false, name: "早餐模式" },
+                            { id: 12, isCheck: false, name: "安防模式" },
+                            { id: 13, isCheck: false, name: "守护模式" },
+                            { id: 14, isCheck: false, name: "阅读模式" },
+                            { id: 15, isCheck: false, name: "聚会模式" },
+                            { id: 16, isCheck: false, name: "娱乐模式" },
+                            { id: 17, isCheck: false, name: "运动模式" }
+                        ]
                     },
                     {
                         id:3,
@@ -1108,10 +1170,6 @@
                     })
                 }
             },
-
-            getContorl(){
-                console.log('跳转:','跳转')
-            }
         },
         components: {
             'test': 'url:components/test.vue',
