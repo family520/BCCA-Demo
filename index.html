@@ -338,6 +338,7 @@
         $(".jmscBtn").on('click',function () {
             $(".oneBox").hide();
             $(".twoBox").show();
+
             echartsOne('main');
             timer = setInterval(function () {
                 $(".twoBox").hide();
@@ -406,7 +407,9 @@
 
         // 基于准备好的dom，初始化echarts实例
         function echartsOne(name){
+
             let myChart = echarts.init(document.getElementById(name));
+            myChart.clear();
             let data = [];
             let labelData = [];
             for (let i = 0; i < 100; ++i) {
@@ -502,7 +505,7 @@
                         imgIcon:"img/zhinengmensuo.jpg",
                         name:"B-HLS智能锁(I2016F)",
                         type:"智慧中心",
-                        nameImg:"img/dnb.jpg",
+                        nameImg:"img/zhinengshuo.png",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -669,8 +672,8 @@
                         name:"单相电子式电能表",
                         type:"智慧照明",
                         nameImg:"img/dnb.jpg",
-                        isConnection:false, //是否连接
-                        isAccess:false,     //是否接入,
+                        isConnection:true, //是否连接
+                        isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
                         uplinkInstruction:[  //上行指令
                             {
@@ -801,8 +804,8 @@
                         productCode:"001",
                         imgIcon:"img/chuanganqi.jpg",
                         name:"光照传感器",
-                        type:"智慧安防",
-                        nameImg:"img/znsb.jpg",
+                        type:"智慧照明",
+                        nameImg:"img/guangganduchuanganqi.png",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -1412,8 +1415,8 @@
                         name:"曼顿s3空气开关",
                         type:"智慧安防",
                         nameImg:"img/mandun.png",
-                        isConnection:true, //是否连接
-                        isAccess:true,     //是否接入,
+                        isConnection:false, //是否连接
+                        isAccess:false,     //是否接入,
                         isSuccess: true,   //是否成功
                         uplinkInstruction:[  //上行指令
                             {
@@ -1678,7 +1681,7 @@
                         imgIcon:"img/wenduchuanganqi.jpg",
                         name:"温湿度传感器",
                         type:"智慧中心",
-                        nameImg:"img/zscgq.jpg",
+                        nameImg:"img/wenshidujianceyi.png",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
