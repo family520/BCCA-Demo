@@ -11,6 +11,115 @@
     <script src="js/vue-2.4.0.js"></script>
     <script src="js/httpVueLoader.js"></script>
     <script src="js/echars_4.4.0.min.js"></script>
+    <style>
+        body{
+            position: relative;
+        }
+        .templateBox{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.2);
+        }
+        .templateBox .templateMinBox{
+            padding: 0 0.2rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 9.61rem;
+            height: 7.66rem;
+            background-color: #1B2634;
+        }
+        .templateBox .templateMinBox .nav{
+            width: 100%;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.18rem;
+            color: white;
+        }
+        .templateBox .templateMinBox .nav img{
+            width: 0.17rem;
+            cursor: pointer;
+            height: 0.17rem;
+        }
+        .contBox{
+            position: relative;
+            width: 100%;
+            height: 90%;
+            border-radius: 0.04rem;
+            background-color: #131D2B;
+        }
+        .contBox .oneBox{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            /*display: none;*/
+        }
+        .contBox .oneBox img{
+            width: 1.89rem;
+            height: 2.01rem;
+            margin-top: 2rem;
+        }
+        .contBox .oneBox button{
+            margin-top: 0.4rem;
+            width: 1.21rem;
+            height: 0.37rem;
+            background-color: #00FFFF;
+            color: white;
+            font-size: 0.18rem;
+            line-height: 0.37rem;
+            border-radius: 0.04rem;
+        }
+
+        .contBox .twoBox{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            text-align: center;
+        }
+        .contBox .threeBox{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            display: none;
+        }
+        .contBox .threeBox .threeName{
+            line-height: 0.6rem;
+            margin: 0.1rem 0;
+            font-size: 0.24rem;
+            color: #32CAC7;
+        }
+        .contBox .threeBox img{
+            width: 4rem;
+            height: 5rem;
+        }
+        .contBox .threeBox button{
+            margin-top: 0.4rem;
+            width: 1.21rem;
+            height: 0.37rem;
+            background-color: #00FFFF;
+            color: white;
+            font-size: 0.18rem;
+            line-height: 0.37rem;
+            border-radius: 0.04rem;
+        }
+    </style>
 </head>
 <body>
 <!-- 头部盒子 -->
@@ -64,7 +173,7 @@
             <div class="MaxBox">
                 <div class="listBox">
                     <div class="itemBox" v-for="(item,index) in showData" :key="index" >
-                        <img :src="item.imgIcon" alt="">
+                        <img style="border-radius: 0.1rem" :src="item.imgIcon" alt="">
                         <p class="name">{{item.name}}</p>
                         <span class="isLJ"><i :class="{active:item.isConnection}"></i>{{item.isConnection?'已连接':'未连接'}}</span>
                         <div class="btns">
@@ -169,7 +278,7 @@
             </div>
             <div class="btns" v-show="isSetShow">
                 <button @click="showPopout('test')">测试</button>
-                <button @click="showPopout('setUI')">界面设置</button>
+                <button class="jmSetting">界面设置</button>
                 <button @click="showPopout('plan')">执行计划</button>
                 <button id="jump">接入完成</button>
             </div>
@@ -189,13 +298,60 @@
     </div>
 
 </div>
-
-
+<div class="templateBox">
+    <div class='templateMinBox'>
+        <div class="nav">
+            <span>界面生成</span>
+            <img class="closeBtn" src="img/close.png" alt="">
+        </div>
+        <div class="contBox">
+            <div class="oneBox">
+                <img src="img/zdsc.png" alt="">
+                <br>
+                <button class="jmscBtn">界面生成</button>
+            </div>
+            <div class="twoBox">
+                <p style="margin: 0.4rem 0;font-size: 0.24rem;color: white">生成中...</p>
+                <div id="main" style="width:100%;height:4rem;"></div>
+            </div>
+            <div class="threeBox">
+                <p class="threeName"></p>
+                <img class="nnImg" src="img/dnb.jpg" alt="">
+                <br>
+                <button class="sureBtn">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="js/jquery.min.js"></script>
 <script src="js/vue.min.js"></script>
 <script>
     $(function () {
+        let timer='';
+        $(".jmSetting").on('click',function () {
+            clearInterval(timer);
+            $(".templateBox").show();
+            $(".threeBox").hide();
+            $(".oneBox").show();
+        });
 
+        $(".jmscBtn").on('click',function () {
+            $(".oneBox").hide();
+            $(".twoBox").show();
+            echartsOne('main');
+            timer = setInterval(function () {
+                $(".twoBox").hide();
+                $(".threeBox").show();
+            },2000);
+        });
+
+        $(".sureBtn").on("click",function () {
+            $(".templateBox").hide();
+        });
+        $(".closeBtn").on("click",function () {
+            $(".templateBox").hide();
+        });
+        // $(".threeName").text(this.showData.name);
         //跳转
         $("#jump").click(function () {
             var data = {'userAccount':'admin','userPassword':'123321'};
@@ -214,8 +370,7 @@
                     }
                 }
             });
-        })
-        
+        });
         
         //切换样式
         $(".navBox span").each(function () {
@@ -234,75 +389,11 @@
             });
         });
 
-        //分类管理
-        // $(".navBox span").each(function () {
-        //     let title = $(this).attr("title");
-        //     $(this).on('click',function () {
-        //         vm.showData = [];
-        //         if(title === "全部"){
-        //             vm.showData = vm.dataList;
-        //         }else if(title === "智慧中心"){
-        //             for (let i =0; i < vm.dataList.length; i++){
-        //                 if(vm.dataList[i].type === "智慧中心"){
-        //                     vm.showData.push(vm.dataList[i]);
-        //                 }
-        //             }
-        //         }else if(title === "智慧照明"){
-        //             for (let i =0; i < vm.dataList.length; i++){
-        //                 if(vm.dataList[i].type === "智慧照明"){
-        //                     vm.showData.push(vm.dataList[i]);
-        //                 }
-        //             }
-        //         }else if(title === "设备控制"){
-        //             for (let i =0; i < vm.dataList.length; i++){
-        //                 if(vm.dataList[i].type === "设备控制"){
-        //                     vm.showData.push(vm.dataList[i]);
-        //                 }
-        //             }
-        //         }else if(title === "智慧安防"){
-        //             for (let i =0; i < vm.dataList.length; i++){
-        //                 if(vm.dataList[i].type === "智慧安防"){
-        //                     vm.showData.push(vm.dataList[i]);
-        //                 }
-        //             }
-        //         }
-        //     });
-        // });
         //下拉框
         $('#moreSelect').change(function () {
             let val = $(this).find("option:selected").text();
             vm.showClassify(val,'all');
-            // if(val === "传感检测"){
-            //     for (let i =0; i < vm.dataList.length; i++){
-            //         if(vm.dataList[i].type === "传感检测"){
-            //             vm.showData.push(vm.dataList[i]);
-            //         }
-            //     }
-            // }else if(val === "音视频"){
-            //     for (let i =0; i < vm.dataList.length; i++){
-            //         if(vm.dataList[i].type === "音视频"){
-            //             vm.showData.push(vm.dataList[i]);
-            //         }
-            //     }
-            // }else if(val === "居家生活"){
-            //     for (let i =0; i < vm.dataList.length; i++){
-            //         if(vm.dataList[i].type === "居家生活"){
-            //             vm.showData.push(vm.dataList[i]);
-            //         }
-            //     }
-            // }else if(val === "专业服务"){
-            //     for (let i =0; i < vm.dataList.length; i++){
-            //         if(vm.dataList[i].type === "专业服务"){
-            //             vm.showData.push(vm.dataList[i]);
-            //         }
-            //     }
-            // }else if(val === "辅材/工具"){
-            //     for (let i =0; i < vm.dataList.length; i++){
-            //         if(vm.dataList[i].type === "辅材/工具"){
-            //             vm.showData.push(vm.dataList[i]);
-            //         }
-            //     }
-            // }
+
 
         });
         //showAll
@@ -313,28 +404,76 @@
             }
         });
 
-        // //是否连接
-        // $(".checkBox span").each(function () {
-        //    let val = $(this).text();
-        //    $(this).on('click',function () {
-        //        console.log(vm.showData[0].type);
-        //        let isData =[];
-        //        if(val === "已连接设备"){
-        //            for (let i =0; i < vm.showData.length; i++){
-        //                if(vm.showData[i].isConnection === true){
-        //                    isData.push(vm.showData[i]);
-        //                }
-        //            }
-        //            }else if(val === "未连接设备"){
-        //            for (let i =0; i < vm.showData.length; i++){
-        //                if(vm.showData[i].isConnection === false){
-        //                    isData.push(vm.showData[i]);
-        //                }
-        //            }
-        //        }
-        //        vm.showData = isData;
-        //    });
-        // });
+        // 基于准备好的dom，初始化echarts实例
+        function echartsOne(name){
+            let myChart = echarts.init(document.getElementById(name));
+            let data = [];
+            let labelData = [];
+            for (let i = 0; i < 100; ++i) {
+                data.push({
+                    value: Math.random() * 10 + 10 - Math.abs(i - 12),
+                    name: i + ":00"
+                });
+                labelData.push({
+                    value: 1,
+                    name: i,
+                    itemStyle: {
+                        normal: {
+                            color: "#333"
+                        }
+                    }
+                });
+            }
+            for (let i = 0; i < labelData.length; ++i) {
+                if (labelData[i].name < 100) {
+                    labelData[i].itemStyle = {
+                        normal: {
+                            color: "#1477ca"
+                        }
+                    };
+                }
+            }
+            // 指定图表的配置项和数据
+            let option = {
+                title: {
+                    text: 100+"%",
+                    left: "50%",
+                    textAlign: "center",
+                    top: "45%",
+                    textStyle: {
+                        fontSize: 16,
+                        color: "#fff"
+                    }
+                },
+                series: [
+                    {
+                        hoverAnimation: false,
+                        type: "pie",
+                        data: labelData,
+                        radius: ["55%", "85%"],
+                        itemStyle: {
+                            normal: {
+                                borderWidth: 1,
+                                backgroundColor: "#000"
+                            }
+                        },
+                        label: {
+                            normal: {
+                                position: "inside",
+                                show: false
+                            }
+                        }
+                    }
+                ]
+            };
+
+            myChart.setOption(option);
+            //  重新绘制echarts
+            window.onresize = function() {
+                myChart.resize();
+            };
+        }
+
     });
 </script>
 <script>
@@ -363,6 +502,7 @@
                         imgIcon:"img/img01.png",
                         name:"B-HLS智能锁(I2016F)",
                         type:"智慧中心",
+                        nameImg:"",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -525,9 +665,10 @@
                     {
                         id:2,
                         productCode:"001",
-                        imgIcon:"img/img10.png",
+                        imgIcon:"img/diannengbiao.jpg",
                         name:"单相电子式电能表",
                         type:"智慧照明",
+                        nameImg:"img/dnb.png",
                         isConnection:false, //是否连接
                         isAccess:false,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -594,9 +735,10 @@
                     {
                         id:3,
                         productCode:"001",
-                        imgIcon:"img/img01.png",
+                        imgIcon:"img/chuangshuibiao.jpg",
                         name:"电子远传智能水表",
                         type:"设备控制",
+                        nameImg:"img/znsb.png",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -657,7 +799,7 @@
                     {
                         id:4,
                         productCode:"001",
-                        imgIcon:"img/img01.png",
+                        imgIcon:"img/chuanganqi.jpg",
                         name:"光照传感器",
                         type:"智慧安防",
                         isConnection:true, //是否连接
@@ -826,6 +968,7 @@
                         imgIcon:"img/img01.png",
                         name:"活体动态人脸识别机",
                         type:"智慧安防",
+                        nameImg:"img/Modbus.png",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -1264,7 +1407,7 @@
                     {
                         id:6,
                         productCode:"001",
-                        imgIcon:"img/img01.png",
+                        imgIcon:"img/mandunkongkai.jpg",
                         name:"曼顿s3空气开关",
                         type:"智慧安防",
                         isConnection:true, //是否连接
@@ -1530,9 +1673,10 @@
                     {
                         id:7,
                         productCode:"001",
-                        imgIcon:"img/img01.png",
+                        imgIcon:"img/wenduchuanganqi.jpg",
                         name:"温湿度传感器",
                         type:"智慧中心",
+                        nameImg:"img/zscgq.png",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -1733,7 +1877,10 @@
                 productcode : "",//产品编号
                 isShow:false,    //下行指令 上行指令
                 isSetShow:false, //指令解析，定义功能
-                classifyType : "全部"//分类的种类
+                classifyType : "全部",//分类的种类
+                name:"空空",
+                nameImg:"",
+                testData:[]
             }
         },
         methods: {
@@ -1810,6 +1957,9 @@
 
             //显示详情
             detailData(index,isConnection){
+                console.log(this.showData[index].nameImg);
+                $(".threeName").text(this.showData[index].name);
+                $(".nnImg").src = this.showData[index].nameImg;
                 if(isConnection === false){
                     this.isShow = false;
                     this.isSetShow = false;

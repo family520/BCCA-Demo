@@ -16,7 +16,6 @@
       </span>
 
       <div class="popoutBtns">
-<!--        <input type="button" value="接入" @click="close1" v-show="choose_device.isSuccess && flag == 'img'" />-->
         <input type="button" :value="btnValue" @click="close1" />
       </div>
     </div>
@@ -28,7 +27,6 @@ module.exports = {
   mounted() {
 
     //首先看此设备是否能接入
-    //  console.log('checkedItem:', this.choose_device)
 
     let isSuccess =  this.choose_device.isSuccess;
 
