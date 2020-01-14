@@ -499,10 +499,10 @@
                     {
                         id:1,
                         productCode:"001",
-                        imgIcon:"img/img01.png",
+                        imgIcon:"img/zhinengmensuo.jpg",
                         name:"B-HLS智能锁(I2016F)",
                         type:"智慧中心",
-                        nameImg:"",
+                        nameImg:"img/dnb.jpg",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -668,7 +668,7 @@
                         imgIcon:"img/diannengbiao.jpg",
                         name:"单相电子式电能表",
                         type:"智慧照明",
-                        nameImg:"img/dnb.png",
+                        nameImg:"img/dnb.jpg",
                         isConnection:false, //是否连接
                         isAccess:false,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -738,7 +738,7 @@
                         imgIcon:"img/chuangshuibiao.jpg",
                         name:"电子远传智能水表",
                         type:"设备控制",
-                        nameImg:"img/znsb.png",
+                        nameImg:"img/znsb.jpg",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -802,6 +802,7 @@
                         imgIcon:"img/chuanganqi.jpg",
                         name:"光照传感器",
                         type:"智慧安防",
+                        nameImg:"img/znsb.jpg",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -965,10 +966,10 @@
                     {
                         id:5,
                         productCode:"001",
-                        imgIcon:"img/img01.png",
+                        imgIcon:"img/renlianshibieji.jpg",
                         name:"活体动态人脸识别机",
                         type:"智慧安防",
-                        nameImg:"img/Modbus.png",
+                        nameImg:"img/rnsbj.jpg",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -1410,6 +1411,7 @@
                         imgIcon:"img/mandunkongkai.jpg",
                         name:"曼顿s3空气开关",
                         type:"智慧安防",
+                        nameImg:"img/mandun.png",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -1676,7 +1678,7 @@
                         imgIcon:"img/wenduchuanganqi.jpg",
                         name:"温湿度传感器",
                         type:"智慧中心",
-                        nameImg:"img/zscgq.png",
+                        nameImg:"img/zscgq.jpg",
                         isConnection:true, //是否连接
                         isAccess:true,     //是否接入,
                         isSuccess: true,   //是否成功
@@ -1959,7 +1961,11 @@
             detailData(index,isConnection){
                 console.log(this.showData[index].nameImg);
                 $(".threeName").text(this.showData[index].name);
-                $(".nnImg").src = this.showData[index].nameImg;
+                // $(".nnImg").css({
+                //     src:this.showData[index].nameImg
+                // });
+                $(".nnImg")[0].src=this.showData[index].nameImg;
+                console.log($(".nnImg"));
                 if(isConnection === false){
                     this.isShow = false;
                     this.isSetShow = false;
