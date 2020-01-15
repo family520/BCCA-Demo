@@ -34,7 +34,7 @@
             height: 7.66rem;
             background-color: #1B2634;
         }
-        .templateBox .templateMinBox .nav{
+        .nav{
             width: 100%;
             height: 0.5rem;
             line-height: 0.5rem;
@@ -44,7 +44,7 @@
             font-size: 0.18rem;
             color: white;
         }
-        .templateBox .templateMinBox .nav img{
+        .nav img{
             width: 0.17rem;
             cursor: pointer;
             height: 0.17rem;
@@ -118,6 +118,63 @@
             font-size: 0.18rem;
             line-height: 0.37rem;
             border-radius: 0.04rem;
+        }
+        /*
+            接入弹框
+        */
+        .accessBox{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.2);
+        }
+        .accessBox .accessMinBox{
+            padding: 0 0.2rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 6rem;
+            height: 6rem;
+            background-color: #1B2634;
+            text-align: center;
+        }
+        .accessBox .accessMinBox .successImg{
+            width: 1.6rem;
+            height: 1.6rem;
+            margin-top: 1.2rem;
+        }
+        .accessBox .accessMinBox p{
+            font-size: 0.22rem;
+            color: white;
+            margin: 0.1rem 0;
+        }
+        .accessBox .accessMinBox .btns{
+            width: 100%;
+            height: 0.4rem;
+            line-height: 0.4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0.4rem;
+        }
+        .accessBox .accessMinBox .btns button{
+            width: 1rem;
+            line-height: 0.35rem;
+            border-radius: 0.08rem;
+            outline: none;
+            color: white;
+            font-size: 0.16rem;
+            margin: 0 0.1rem;
+        }
+        .accessBox .accessMinBox .btns button:nth-child(1){
+            background-color: #0492F2;
+        }
+        .accessBox .accessMinBox .btns button:nth-child(2){
+            background-color: #00FFFF;
         }
     </style>
 </head>
@@ -280,7 +337,8 @@
                 <button @click="showPopout('test')">测试</button>
                 <button class="jmSetting">界面设置</button>
                 <button @click="showPopout('plan')">执行计划</button>
-                <button id="jump">接入完成</button>
+                <button class="accessBtn">接入</button>
+                <button class="jump" v-show="isShowBtn" style="background: #00FFFF;color: white">设备控制</button>
             </div>
         </div>
 
@@ -323,6 +381,22 @@
         </div>
     </div>
 </div>
+<div class="accessBox">
+    <div class="accessMinBox">
+        <div class="nav">
+            <span>接入</span>
+            <img class="closeBtn" src="img/close.png" alt="">
+        </div>
+        <div style="height: 88%;background-color: #131D2B">
+            <img class="successImg" src="img/accessSuccess.png" alt="">
+            <p>接入成功</p>
+            <div class="btns">
+                <button class="sureBtn">确定</button>
+                <button class="jump">设备控制</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="js/jquery.min.js"></script>
 <script src="js/vue.min.js"></script>
 <script>
@@ -346,31 +420,40 @@
             },2000);
         });
 
+        $(".accessBtn").on("click",function () {
+            $(".accessBox").show();
+        });
+
         $(".sureBtn").on("click",function () {
             $(".templateBox").hide();
+            $(".accessBox").hide();
         });
+
         $(".closeBtn").on("click",function () {
             $(".templateBox").hide();
+            $(".accessBox").hide();
         });
+
         // $(".threeName").text(this.showData.name);
         //跳转
-        $("#jump").click(function () {
-            var data = {'userAccount':'admin','userPassword':'123321'};
-            $.ajax({
-                url: 'http://113.204.9.70:8084/index/getToken.json',
-                dataType: 'json',
-                type: 'post',
-                data: JSON.stringify(data),
-                contentType : 'application/json',
-                async:false,
-                success:function (data) {
-                    if(data.status==200){
-                        window.location.href = 'http://113.204.9.70:8084/html/productManage/productManage.html?token='+data.token;
-                    }else{
-                        alert(data.msg);
-                    }
-                }
-            });
+        $(".jump").click(function () {
+            // var data = {'userAccount':'15611001347','userPassword':'000000'};
+            window.location.href = 'http://39.98.137.198/tradeunion-ui/tradeunion-web/exhibitionManagement.html?z_orgId=a8f1312c055741429c0d735c3aabffaa';
+            //     $.ajax({
+            //     url: 'http://113.204.9.70:8084/index/getToken.json',
+            //     dataType: 'json',
+            //     type: 'post',
+            //     data: JSON.stringify(data),
+            //     contentType : 'application/json',
+            //     async:false,
+            //     success:function (data) {
+            //         if(data.status === 200){
+            //             window.location.href = 'http://113.204.9.70:8084/html/productManage/productManage.html?token='+data.token;
+            //         }else{
+            //             alert(data.msg);
+            //         }
+            //     }
+            // });
         });
         
         //切换样式
@@ -397,6 +480,7 @@
 
 
         });
+
         //showAll
         $(".showAll").on('click',function () {
             let classifyType = vm.classifyType;
@@ -798,6 +882,26 @@
                                 model:"不支持"
                             }
                         ],
+                        modelList: [
+                            { id: 1, isCheck: false, name: "会客模式" },
+                            { id: 2, isCheck: false, name: "离家模式" },
+                            { id: 3, isCheck: false, name: "回家模式" },
+                            { id: 4, isCheck: false, name: "观影模式" },
+                            { id: 5, isCheck: false, name: "夜间模式" },
+                            { id: 6, isCheck: false, name: "白昼模式" },
+                            { id: 7, isCheck: false, name: "K歌模式" },
+                            { id: 8, isCheck: false, name: "浪漫晚餐模式" },
+                            { id: 9, isCheck: false, name: "睡眠模式" },
+                            { id: 10, isCheck: false, name: "起床模式" },
+                            { id: 11, isCheck: false, name: "早餐模式" },
+                            { id: 12, isCheck: false, name: "安防模式" },
+                            { id: 13, isCheck: false, name: "守护模式" },
+                            { id: 14, isCheck: false, name: "阅读模式" },
+                            { id: 15, isCheck: false, name: "聚会模式" },
+                            { id: 16, isCheck: false, name: "娱乐模式" },
+                            { id: 17, isCheck: false, name: "运动模式" },
+                            { id: 18, isCheck: false, name: "办公模式" }
+                        ]
                     },
                     {
                         id:4,
@@ -965,6 +1069,26 @@
                                 model:"支持"
                             }
                         ],
+                        modelList: [
+                            { id: 1, isCheck: false, name: "会客模式" },
+                            { id: 2, isCheck: false, name: "离家模式" },
+                            { id: 3, isCheck: false, name: "回家模式" },
+                            { id: 4, isCheck: false, name: "观影模式" },
+                            { id: 5, isCheck: false, name: "夜间模式" },
+                            { id: 6, isCheck: false, name: "白昼模式" },
+                            { id: 7, isCheck: false, name: "K歌模式" },
+                            { id: 8, isCheck: false, name: "浪漫晚餐模式" },
+                            { id: 9, isCheck: false, name: "睡眠模式" },
+                            { id: 10, isCheck: false, name: "起床模式" },
+                            { id: 11, isCheck: false, name: "早餐模式" },
+                            { id: 12, isCheck: false, name: "安防模式" },
+                            { id: 13, isCheck: false, name: "守护模式" },
+                            { id: 14, isCheck: false, name: "阅读模式" },
+                            { id: 15, isCheck: false, name: "聚会模式" },
+                            { id: 16, isCheck: false, name: "娱乐模式" },
+                            { id: 17, isCheck: false, name: "运动模式" },
+                            { id: 18, isCheck: false, name: "办公模式" }
+                        ]
                     },
                     {
                         id:5,
@@ -1407,6 +1531,26 @@
                                 model:"不支持"
                             }
                         ],
+                        modelList: [
+                            { id: 1, isCheck: false, name: "会客模式" },
+                            { id: 2, isCheck: false, name: "离家模式" },
+                            { id: 3, isCheck: false, name: "回家模式" },
+                            { id: 4, isCheck: false, name: "观影模式" },
+                            { id: 5, isCheck: false, name: "夜间模式" },
+                            { id: 6, isCheck: false, name: "白昼模式" },
+                            { id: 7, isCheck: false, name: "K歌模式" },
+                            { id: 8, isCheck: false, name: "浪漫晚餐模式" },
+                            { id: 9, isCheck: false, name: "睡眠模式" },
+                            { id: 10, isCheck: false, name: "起床模式" },
+                            { id: 11, isCheck: false, name: "早餐模式" },
+                            { id: 12, isCheck: false, name: "安防模式" },
+                            { id: 13, isCheck: false, name: "守护模式" },
+                            { id: 14, isCheck: false, name: "阅读模式" },
+                            { id: 15, isCheck: false, name: "聚会模式" },
+                            { id: 16, isCheck: false, name: "娱乐模式" },
+                            { id: 17, isCheck: false, name: "运动模式" },
+                            { id: 18, isCheck: false, name: "办公模式" }
+                        ]
                     },
                     {
                         id:6,
@@ -1674,6 +1818,26 @@
                                 model:"支持"
                             }
                         ],
+                        modelList: [
+                            { id: 1, isCheck: false, name: "会客模式" },
+                            { id: 2, isCheck: false, name: "离家模式" },
+                            { id: 3, isCheck: false, name: "回家模式" },
+                            { id: 4, isCheck: false, name: "观影模式" },
+                            { id: 5, isCheck: false, name: "夜间模式" },
+                            { id: 6, isCheck: false, name: "白昼模式" },
+                            { id: 7, isCheck: false, name: "K歌模式" },
+                            { id: 8, isCheck: false, name: "浪漫晚餐模式" },
+                            { id: 9, isCheck: false, name: "睡眠模式" },
+                            { id: 10, isCheck: false, name: "起床模式" },
+                            { id: 11, isCheck: false, name: "早餐模式" },
+                            { id: 12, isCheck: false, name: "安防模式" },
+                            { id: 13, isCheck: false, name: "守护模式" },
+                            { id: 14, isCheck: false, name: "阅读模式" },
+                            { id: 15, isCheck: false, name: "聚会模式" },
+                            { id: 16, isCheck: false, name: "娱乐模式" },
+                            { id: 17, isCheck: false, name: "运动模式" },
+                            { id: 18, isCheck: false, name: "办公模式" }
+                        ]
                     },
                     {
                         id:7,
@@ -1885,7 +2049,8 @@
                 classifyType : "全部",//分类的种类
                 name:"空空",
                 nameImg:"",
-                testData:[]
+                testData:[],
+                isShowBtn:''
             }
         },
         methods: {
@@ -1963,6 +2128,7 @@
             //显示详情
             detailData(index,isConnection){
                 console.log(this.showData[index].nameImg);
+                this.isShowBtn = this.showData[index].isAccess
                 $(".threeName").text(this.showData[index].name);
                 // $(".nnImg").css({
                 //     src:this.showData[index].nameImg

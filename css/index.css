@@ -378,9 +378,7 @@
 
 .detailBox .tableBox .listItemBox .tableItem>span{
     text-align: left;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
 }
 .detailBox .tableBox .tableItem span:nth-child(1){
     width: 0.8rem;

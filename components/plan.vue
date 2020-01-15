@@ -82,24 +82,6 @@ module.exports = {
       prepositionTime: "", //前置时间
       delayTime: "", //延时时间
       modelList: [
-        { id: 1, isCheck: false, name: "会客模式" },
-        { id: 2, isCheck: false, name: "离家模式" },
-        { id: 3, isCheck: false, name: "回家模式" },
-        { id: 4, isCheck: false, name: "观影模式" },
-        { id: 5, isCheck: false, name: "夜间模式" },
-        { id: 6, isCheck: false, name: "白昼模式" },
-        { id: 7, isCheck: false, name: "K歌模式" },
-        { id: 8, isCheck: false, name: "浪漫晚餐模式" },
-        { id: 9, isCheck: false, name: "睡眠模式" },
-        { id: 10, isCheck: false, name: "起床模式" },
-        { id: 11, isCheck: false, name: "早餐模式" },
-        { id: 12, isCheck: false, name: "安防模式" },
-        { id: 13, isCheck: false, name: "守护模式" },
-        { id: 14, isCheck: false, name: "阅读模式" },
-        { id: 15, isCheck: false, name: "聚会模式" },
-        { id: 16, isCheck: false, name: "娱乐模式" },
-        { id: 17, isCheck: false, name: "运动模式" },
-        { id: 18, isCheck: false, name: "办公模式" }
       ]
     };
   },
@@ -120,7 +102,8 @@ module.exports = {
     }
   },
     mounted(){
-        this.modelList = this.choose_device.modelList
+      this.modelList = this.choose_device.modelList;
+      console.log(this.modelList);
     },
     props: ['choose_device'],
 
